@@ -1,0 +1,7 @@
+template:
+  title: 自定义计分板 - 默认标题
+  text:
+    - '&e%player%'
+    - "!:"
+    - 'by: 3054587546'
+data:

@@ -1,0 +1,9 @@
+name: MyScoreBoard
+version: '${project.version}'
+main: fun.xiantiao.myscoreboard.MyScoreBoard
+api-version: '1.13'
+authors: [ xiantiao ]
+softdepend: [PlaceholderAPI]
+website: https://github.com/xiantiao233
+commands:
+  mysb:
