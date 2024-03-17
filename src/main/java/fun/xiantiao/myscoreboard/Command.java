@@ -39,6 +39,7 @@ public class Command implements CommandExecutor, TabCompleter {
 
             if ("reload".equalsIgnoreCase(args[0])) {
                 if (player.isOp() || player.hasPermission("myscoreboard.reload")) {
+                    sender.sendMessage("ok!");
                     plugin.reloadConfig();
                     return true;
                 }
@@ -48,6 +49,15 @@ public class Command implements CommandExecutor, TabCompleter {
                 MySB mySb = new MySBIm(player);
                 sender.sendMessage("======================");
                 for (String s1 : mySb.list()) {
+                    sender.sendMessage(s1);
+                }
+                sender.sendMessage("======================");
+                return true;
+            }
+
+            if ("papi".equalsIgnoreCase(args[0])) {
+                sender.sendMessage("======================");
+                for (String s1 : plugin.getConfig().getStringList("PermittedPapi")) {
                     sender.sendMessage(s1);
                 }
                 sender.sendMessage("======================");
@@ -141,7 +151,8 @@ public class Command implements CommandExecutor, TabCompleter {
 
         if (args.length == 1) {
             stringList.add("set");
-
+            stringList.add("look");
+            stringList.add("papi");
             if (sender.isOp() || sender.hasPermission("myscoreboard.reload")) {
                 stringList.add("reload");
             }
@@ -152,7 +163,6 @@ public class Command implements CommandExecutor, TabCompleter {
             stringList.add("remove");
             stringList.add("add");
             stringList.add("set");
-            stringList.add("look");
         }
 
         if (args.length == 3 && "remove".equalsIgnoreCase(args[1])) {

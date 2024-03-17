@@ -1,7 +1,15 @@
 template:
-  title: 自定义计分板 - 默认标题
+  title: "自定义计分板 - 默认标题"
   text:
     - '&e%player%'
     - "!:"
     - 'by: 3054587546'
+
+#允许玩家使用的的Papi变量
+PermittedPapi:
+  - "%player_name%"
+
+#配置文件版本
+var: 2
+
 data:

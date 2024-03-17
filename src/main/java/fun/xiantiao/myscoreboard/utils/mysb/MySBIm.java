@@ -13,7 +13,7 @@ import java.util.List;
  * MyScoreBoard
  */
 public class MySBIm implements MySB{
-    FileConfiguration config = MyScoreBoard.getPlugin().getConfig();
+    static FileConfiguration config = MyScoreBoard.getPlugin().getConfig();
     Player player;
 
     public MySBIm(Player player) {

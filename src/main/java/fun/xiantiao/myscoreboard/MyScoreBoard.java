@@ -1,11 +1,18 @@
 package fun.xiantiao.myscoreboard;
 
+import fun.xiantiao.myscoreboard.utils.mysb.MySB;
+import fun.xiantiao.myscoreboard.utils.mysb.MySBIm;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static fun.xiantiao.myscoreboard.Send.send;
@@ -23,6 +30,16 @@ public final class MyScoreBoard extends JavaPlugin implements Listener {
 
         saveDefaultConfig();
         reloadConfig();
+
+
+        if (!getConfig().isSet("var")) {
+            List<String> stringList = new ArrayList<>();
+            stringList.add("%player_name%");
+            stringList.add("%player_uuid%");
+            getConfig().set("PermittedPapi",stringList);
+            getConfig().set("var",2);
+        }
+
 
         getServer().getPluginManager().registerEvents(this,this);
 
@@ -54,6 +71,13 @@ public final class MyScoreBoard extends JavaPlugin implements Listener {
                 }
             }
         }).start();
+    }
+
+    @EventHandler
+    public void playerJoin(PlayerJoinEvent event) {
+        if (getConfig().isSet("data."+event.getPlayer().getUniqueId()+".text")) {
+            send(event.getPlayer());
+        }
     }
 
     @Override
